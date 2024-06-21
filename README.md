@@ -18,7 +18,7 @@ This is a responsive React application that displays news articles fetched from 
 ## Tech Stack
 
 **Client:** ReactJS, TailwindCSS
-
+**API** NewsAPI
 
 
 

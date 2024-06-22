@@ -18,7 +18,6 @@ const Favorites = ({ favorites, articles }) => {
                 </Link>
               </div>
             ))}{" "}
-          :
         </div>
       ) : (
         //For no favorite news

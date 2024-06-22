@@ -14,7 +14,9 @@ const App = () => {
   const [category, setCategory] = useState("general");
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
-  const favorites = JSON.parse(localStorage.getItem("f")) || [];
+  const [favorites, setFavorites] = useState(
+    JSON.parse(localStorage.getItem("f")) || []
+  );
 
   useEffect(() => {
     //fetching data from API
@@ -41,6 +43,20 @@ const App = () => {
     fetchArticles();
   }, [category, page]);
 
+  useEffect(() => {
+    localStorage.setItem("f", JSON.stringify(favorites));
+  }, [favorites]);
+
+  //function for add to favorite button
+  const addToFavorites = (url) => {
+    setFavorites((prevFavorites) => {
+      if (!prevFavorites.includes(url)) {
+        return [...prevFavorites, url];
+      }
+      return prevFavorites;
+    });
+  };
+
   return (
     <>
       <Routes>
@@ -62,6 +78,7 @@ const App = () => {
                     articles={articles}
                     search={search}
                     setSearch={setSearch}
+                    addToFavorites={addToFavorites}
                   />
                   <Pagination page={page} setPage={setPage} />
                 </>

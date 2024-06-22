@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Article from "./Article";
 
-const ArticleList = ({ articles, search, setSearch }) => {
+const ArticleList = ({ articles, search, setSearch, addToFavorites }) => {
   return (
     <>
       <span className="relative flex justify-center mt-28">
@@ -46,9 +46,7 @@ const ArticleList = ({ articles, search, setSearch }) => {
                 {/* Add to favorite button */}
                 <button
                   onClick={() => {
-                    let data = JSON.parse(localStorage.getItem("f")) || [];
-                    data.push(article.url);
-                    localStorage.setItem("f", JSON.stringify(data));
+                    addToFavorites(article.url);
                   }}
                   className=" mx-10 rounded-xl bg-[#1A21ED]  md:px-4 px-2 md:py-3 py-2 text-base font-semibold  transition  flex  text-center text-white  shadow items-center mt-2 justify-center gap-2 hover:bg-[#e7decc]"
                 >
